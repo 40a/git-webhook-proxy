@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/orrc/git-webhook-proxy/hooks"
 	"log"
 	"net/http"
 	"net/http/httputil"
@@ -13,6 +12,8 @@ import (
 	"reflect"
 	"strings"
 	"sync"
+
+	"github.com/iosphere/git-webhook-proxy/hooks"
 )
 
 type Handler struct {

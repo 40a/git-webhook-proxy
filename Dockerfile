@@ -1,6 +1,6 @@
 FROM golang:1.6.2-alpine
 
-RUN apk add -U bash git su-exec
+RUN apk add -U bash git openssh su-exec
 WORKDIR /go/src/github.com/iosphere/git-webhook-proxy
 ADD . /go/src/github.com/iosphere/git-webhook-proxy
 RUN go install

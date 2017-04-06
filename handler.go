@@ -119,7 +119,7 @@ func (h *Handler) updateOrCloneRepoMirror(repoUri string) error {
 	log.Printf("Updating mirror at %s", repoPath)
 	cmd := exec.Command(h.gitPath, "remote", "update", "-p")
 	cmd.Dir = repoPath
-	err := cmd.Run()
+	out, err := cmd.CombinedOutput()
 	if err == nil {
 		log.Printf("Successfully updated %s", repoPath)
 
@@ -130,7 +130,7 @@ func (h *Handler) updateOrCloneRepoMirror(repoUri string) error {
 		// But we don't really care about the outcome
 		cmd.Run()
 	} else {
-		err = fmt.Errorf("Failed to update %s: %s", repoPath, err.Error())
+		err = fmt.Errorf("Failed to update %s: %s Error: %s", repoPath, err.Error(), string(out))
 	}
 	return err
 }
